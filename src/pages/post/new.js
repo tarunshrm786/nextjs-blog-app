@@ -29,6 +29,9 @@ const NewPostPage = () => {
     if (!user) {
       router.push('/login');
     }
+    else {
+      router.push('/post/new');
+    }
   }, [user, router]);
 
   if (!user) {

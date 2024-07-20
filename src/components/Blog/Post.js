@@ -18,6 +18,7 @@ const Post = ({ post }) => {
       <Typography variant="h5" component="h2">
         {post.title}
       </Typography>
+      
       <Box
         className="post-content"
         dangerouslySetInnerHTML={{ __html: getContentPreview(post.content) }}
@@ -50,3 +51,4 @@ const Post = ({ post }) => {
 };
 
 export default Post;
+
