@@ -1,11 +1,14 @@
 // import { useState, useContext } from 'react';
 // import AuthContext from '../../context/AuthContext';
-// import { TextField, Button, Typography, Box } from '@mui/material';
+// import { TextField, Button, Typography, Box, useMediaQuery } from '@mui/material';
+// import { useTheme } from '@mui/material/styles';
 
 // const LoginForm = () => {
 //   const [email, setEmail] = useState('');
 //   const [password, setPassword] = useState('');
 //   const { login } = useContext(AuthContext);
+//   const theme = useTheme();
+//   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
@@ -13,7 +16,23 @@
 //   };
 
 //   return (
-//     <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, margin: '0 auto', marginLeft:'470px',  marginTop:'80px', padding: 2, border: '1px solid #ddd', borderRadius: 2, backgroundColor: '#f9f9f9' }}>
+//     <Box
+//       component="form"
+//       onSubmit={handleSubmit}
+//       sx={{
+//         maxWidth: 400,
+//         margin: '0 auto',
+//         marginTop: '80px',
+//         padding: 2,
+//         border: '1px solid #ddd',
+//         borderRadius: 2,
+//         backgroundColor: '#f9f9f9',
+//         ...(isSmallScreen && {
+//           margin: '20px auto',
+//           padding: '16px',
+//         }),
+//       }}
+//     >
 //       <Typography variant="h4" component="h2" gutterBottom>
 //         Login
 //       </Typography>
@@ -70,7 +89,8 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       sx={{
         maxWidth: 400,
-        margin: '0 auto',
+        marginLeft: isSmallScreen ? 'auto' : '450px',
+        marginRight: isSmallScreen ? 'auto' : '0',
         marginTop: '80px',
         padding: 2,
         border: '1px solid #ddd',
