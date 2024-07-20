@@ -1,34 +1,3 @@
-// import bcrypt from 'bcryptjs';
-// import connectDB from '../../utils/db';
-// import User from '../../models/user';
-// import { sign } from 'jsonwebtoken';
-
-// connectDB();
-
-// export default async (req, res) => {
-//   const { method } = req;
-//   switch (method) {
-//     case 'POST':
-//       const { email, password } = req.body;
-//       const user = await User.findOne({ email });
-
-//       if (!user || !bcrypt.compareSync(password, user.password)) {
-//         return res.status(401).json({ message: 'Invalid email or password' });
-//       }
-
-//       const token = sign({ userId: user._id }, process.env.NEXTAUTH_SECRET, { expiresIn: '1h' });
-
-//       res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Path=/; Max-Age=3600`);
-//       res.status(200).json({ message: 'Login successful' });
-//       break;
-
-//     default:
-//       res.setHeader('Allow', ['POST']);
-//       res.status(405).end(`Method ${method} Not Allowed`);
-//       break;
-//   }
-// };
-
 import bcrypt from 'bcryptjs';
 import connectDB from '../../utils/db';
 import User from '../../models/user';

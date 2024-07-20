@@ -1,17 +1,3 @@
-// import PostForm from '../../components/Blog/PostForm';
-
-// const NewPostPage = () => {
-//   return (
-//     <div>
-//       <h1>New Post</h1>
-//       <PostForm />
-//     </div>
-//   );
-// };
-
-// export default NewPostPage;
-
-
 import PostForm from '../../components/Blog/PostForm';
 import { Box, Typography } from '@mui/material';
 
