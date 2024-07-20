@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-bottom: 1px solid #e7e7e7;
+  }
+  
+  nav a {
+    margin-right: 15px;
+  }
+  
+  .main-content {
+    display: flex;
+  }
+  
+  aside {
+    width: 200px;
+    padding: 10px;
+  }
+  
+  footer {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
+  }
+  
