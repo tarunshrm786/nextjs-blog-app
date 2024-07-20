@@ -232,7 +232,7 @@ const Header = () => {
               <ListItemText primary="New Post" />
             </ListItem>
           </Link>
-          <Link href="/account" passHref>
+          <Link href="/myaccount" passHref>
             <ListItem button component="a">
               <ListItemText primary="My Account" />
             </ListItem>
