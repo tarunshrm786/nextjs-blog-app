@@ -301,7 +301,7 @@ const Header = () => {
                   <Link href="/post/new" passHref>
                     <CustomButton>New Post</CustomButton>
                   </Link>
-                  <Link href="/account" passHref>
+                  <Link href="/myaccount" passHref>
                     <CustomButton>My Account</CustomButton>
                   </Link>
                   <CustomButton onClick={logout}>Logout</CustomButton>
