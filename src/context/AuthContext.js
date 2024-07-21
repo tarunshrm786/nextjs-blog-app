@@ -1,3 +1,59 @@
+// import { createContext, useState, useEffect } from 'react';
+// import { useRouter } from 'next/router';
+// import cookie from 'js-cookie';
+
+// const AuthContext = createContext();
+
+// export const AuthProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     const checkUserLoggedIn = async () => {
+//       const res = await fetch('/api/auth/user');
+//       if (res.ok) {
+//         const data = await res.json();
+//         setUser(data.user);
+//       } else {
+//         setUser(null);
+//       }
+//     };
+
+//     checkUserLoggedIn();
+//   }, []);
+
+//   const login = async (email, password) => {
+//     const res = await fetch('/api/auth', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ email, password }),
+//     });
+//     if (res.ok) {
+//       setUser(await res.json());
+//       router.push('/');
+//     }
+//   };
+
+//   const logout = async () => {
+//     const res = await fetch('/api/auth/logout', {
+//       method: 'POST',
+//     });
+//     if (res.ok) {
+//       cookie.remove('token', { path: '/' });
+//       setUser(null);
+//       router.push('/login');
+//     }
+//   };
+
+//   return (
+//     <AuthContext.Provider value={{ user, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
+
+// export default AuthContext;
+
 import { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import cookie from 'js-cookie';
@@ -10,12 +66,20 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
-      const res = await fetch('/api/auth/user');
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data.user);
-      } else {
-        setUser(null);
+      const token = cookie.get('token');
+      console.log('Token from cookies inside AuthContext useEffect:', token);  // Debugging line
+      if (token) {
+        const res = await fetch('/api/auth/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setUser({ ...data.user, token });
+        } else {
+          setUser(null);
+        }
       }
     };
 
@@ -29,7 +93,10 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ email, password }),
     });
     if (res.ok) {
-      setUser(await res.json());
+      const data = await res.json();
+      const token = cookie.get('token');
+      console.log('Token from cookies after login:', token);  // Debugging line
+      setUser({ ...data.user, token });
       router.push('/');
     }
   };
@@ -46,7 +113,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );

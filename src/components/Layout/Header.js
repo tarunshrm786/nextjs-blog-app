@@ -140,7 +140,7 @@ const Header = () => {
                     <CustomButton>New Post</CustomButton>
                   </Link>
                   <Link href="/myaccount" passHref>
-                    <CustomButton>My Account</CustomButton>
+                    <CustomButton>My Blog Posts</CustomButton>
                   </Link>
                   <CustomButton onClick={logout}>Logout</CustomButton>
                 </>

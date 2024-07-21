@@ -65,7 +65,16 @@ const PostList = () => {
             key={index + 1}
             onClick={() => handlePageChange(index + 1)}
             variant={currentPage === index + 1 ? 'contained' : 'outlined'}
-            sx={{ margin: 0.5 }}
+            sx={{
+              margin: 0.5,
+              color: 'white',
+              borderColor: 'black',
+              backgroundColor: 'black',
+              '&:hover': {
+                backgroundColor: 'black',
+                color: 'white',
+              },
+            }}
           >
             {index + 1}
           </Button>
@@ -76,5 +85,3 @@ const PostList = () => {
 };
 
 export default PostList;
-
-
