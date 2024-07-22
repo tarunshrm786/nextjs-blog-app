@@ -27,9 +27,9 @@ export default async (req, res) => {
           return res.status(401).json({ message: 'Invalid token' });
         }
 
-        console.log(`Fetching posts for user: ${userId}`);
+        //console.log(`Fetching posts for user: ${userId}`);
         const posts = await Post.find({ author: userId }).populate('author');
-        console.log('Fetched posts:', posts);  // Log fetched posts
+        //console.log('Fetched posts:', posts);  // Log fetched posts
         res.status(200).json(posts);
       } catch (error) {
         console.error('Error fetching posts:', error);

@@ -438,9 +438,9 @@ export default async (req, res) => {
     case 'GET':
       try {
         // Fetch all posts regardless of authentication state
-        console.log('Fetching all posts');
+        //console.log('Fetching all posts');
         const posts = await Post.find().populate('author');
-        console.log('Fetched posts:', posts);  // Log fetched posts
+        //console.log('Fetched posts:', posts);  // Log fetched posts
         res.status(200).json(posts);
       } catch (error) {
         console.error('Error fetching posts:', error);

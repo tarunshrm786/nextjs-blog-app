@@ -57,7 +57,7 @@ export default async (req, res) => {
 
       const token = sign({ userId: user._id }, process.env.NEXTAUTH_SECRET, { expiresIn: '1h' });
 
-      console.log('Generated token:', token);  // Debugging line
+      //console.log('Generated token:', token);  // Debugging line
 
       res.setHeader('Set-Cookie', cookie.serialize('token', token, {
         httpOnly: false, // Change to false to access it via js-cookie on the client side
