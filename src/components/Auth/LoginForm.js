@@ -20,9 +20,12 @@
 //     e.preventDefault();
 //     setLoading(true);
 //     try {
-//       await login(email, password);
-//       //toast.success('Login successful!');
-//       toast.error('Invalid email or password');
+//       const result = await login(email, password);
+//       if (result.success) {
+//         toast.success('Login successful!');
+//       } else {
+//         toast.error(result.message || 'Invalid email or password');
+//       }
 //     } catch (err) {
 //       toast.error('Invalid email or password');
 //     } finally {
@@ -211,7 +214,7 @@ const LoginForm = () => {
         {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Login'}
       </Button>
       <Typography variant="body2" sx={{ marginTop: 2, textAlign: 'center' }}>
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <Link href="/register" legacyBehavior>
           <a>
             <Button variant="text" color="primary">
