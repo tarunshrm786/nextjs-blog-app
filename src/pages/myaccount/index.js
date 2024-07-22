@@ -3,17 +3,21 @@
 // import Cookies from 'js-cookie';
 // import { Box, Typography, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider, CircularProgress } from '@mui/material';
 // import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+// import { useTheme } from '@mui/material/styles';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 
 // const MyAccount = () => {
 //   const [posts, setPosts] = useState([]);
 //   const [loading, setLoading] = useState(true);
 //   const [user, setUser] = useState(null);
 //   const router = useRouter();
+//   const theme = useTheme();
+//   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
 //   useEffect(() => {
 //     const checkUser = async () => {
 //       const token = Cookies.get('token');
-//       console.log('Token from cookies inside MyAccount useEffect:', token); // Debugging line
+//       //console.log('Token from cookies inside MyAccount useEffect:', token); // Debugging line
 
 //       if (token) {
 //         await fetchUser(token);
@@ -59,6 +63,8 @@
 
 //       if (res.ok) {
 //         const data = await res.json();
+//         // setPosts(data);
+//         data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort posts by latest first
 //         setPosts(data);
 //       } else {
 //         console.error('Failed to fetch posts');
@@ -95,14 +101,22 @@
 
 //   if (loading) {
 //     return (
-//       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-//         <CircularProgress />
+//       <Box
+//         sx={{
+//           display: 'flex',
+//           justifyContent: 'center',
+//           alignItems: 'center',
+//           height: '100vh',
+//           marginLeft: isSmallScreen ? '150px' : '400px',
+//         }}
+//       >
+//         <CircularProgress sx={{ color: 'black' }} />
 //       </Box>
 //     );
 //   }
 
 //   if (!user) {
-//     console.log('User is not authenticated:', user);
+//     //console.log('User is not authenticated:', user);
 //     return null;
 //   }
 
@@ -135,6 +149,7 @@
 
 // export default MyAccount;
 
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
@@ -154,8 +169,6 @@ const MyAccount = () => {
   useEffect(() => {
     const checkUser = async () => {
       const token = Cookies.get('token');
-      //console.log('Token from cookies inside MyAccount useEffect:', token); // Debugging line
-
       if (token) {
         await fetchUser(token);
       } else {
@@ -191,16 +204,14 @@ const MyAccount = () => {
 
   const fetchPosts = async (token) => {
     try {
-      const res = await fetch('/api/posts', {
+      const res = await fetch('/api/myaccount-posts', {
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
       });
 
       if (res.ok) {
         const data = await res.json();
-        // setPosts(data);
         data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort posts by latest first
         setPosts(data);
       } else {
@@ -253,7 +264,6 @@ const MyAccount = () => {
   }
 
   if (!user) {
-    //console.log('User is not authenticated:', user);
     return null;
   }
 
