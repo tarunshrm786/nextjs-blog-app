@@ -44,7 +44,7 @@ const Post = ({ post }) => {
         Author: {post.author.name}
       </Typography>
       <Typography variant="body2">
-        Created At: {new Date(post.createdAt).toLocaleString()}
+        Published on: {new Date(post.createdAt).toLocaleString()}
       </Typography>
     </Box>
   );
