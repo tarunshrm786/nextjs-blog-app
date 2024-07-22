@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
     if (res.ok) {
       const data = await res.json();
       const token = cookie.get('token');
-      console.log('Token from cookies after login:', token);  // Debugging line
+      //console.log('Token from cookies after login:', token);  // Debugging line
       setUser({ ...data.user, token });
       router.push('/');
     }

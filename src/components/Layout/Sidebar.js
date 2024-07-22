@@ -13,7 +13,7 @@ const Sidebar = ({ recentPosts }) => {
   // Get the most recent 3 posts
   const recentThreePosts = recentPosts.slice(0, 3);
   const recentTwoReactPosts = recentPosts.slice(0, 1);
-  const recentTwoaiPosts = aiPosts.slice(0, 2);
+  const recentTwoaiPosts = aiPosts.slice(0, 1);
 
   return (
     <Box component="aside" sx={{ width: '170px', padding: 2, backgroundColor: '#f0f0f0', borderRight: '1px solid #ddd' }}>
