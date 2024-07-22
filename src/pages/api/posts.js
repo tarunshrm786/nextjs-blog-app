@@ -321,7 +321,11 @@ export default async (req, res) => {
           posts = await Post.find({ author: userId }).populate('author');
         } else {
           posts = await Post.find().populate('author'); // Return all posts if not authenticated
-        }
+        } 
+        
+        if (!userId) {
+          posts = await Post.find().populate('author');
+        } 
         
         res.status(200).json(posts);
       } catch (error) {
