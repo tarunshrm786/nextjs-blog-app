@@ -142,6 +142,7 @@ import { TextField, Button, Typography, Box, CircularProgress, useMediaQuery } f
 import { useTheme } from '@mui/material/styles';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -278,6 +279,16 @@ const RegisterForm = () => {
       >
         {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Register'}
       </Button>
+      <Typography variant="body2" sx={{ marginTop: 2, textAlign: 'center' }}>
+        Already have an account?{' '}
+        <Link href="/login" legacyBehavior>
+          <a>
+            <Button variant="text" color="primary">
+              Login
+            </Button>
+          </a>
+        </Link>
+      </Typography>
       <ToastContainer />
     </Box>
   );
