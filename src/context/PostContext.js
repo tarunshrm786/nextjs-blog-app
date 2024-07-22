@@ -39,14 +39,14 @@
 
 // export default PostContext;
 
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useCallback } from 'react';
 
 const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     try {
       const res = await fetch('/api/posts');
       if (res.ok) {
@@ -65,11 +65,11 @@ export const PostProvider = ({ children }) => {
       //console.error('Error fetching posts:', error);
       setPosts([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return (
     <PostContext.Provider value={{ posts, fetchPosts }}>

@@ -234,7 +234,7 @@ const PostList = () => {
   }, [fetchPosts]);
 
   useEffect(() => {
-    if (posts) {
+    if (posts.length > 0) {
       setLoading(false);
     }
     console.log('Posts in PostList:', posts);
