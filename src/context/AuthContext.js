@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       const token = cookie.get('token');
-      console.log('Token from cookies inside AuthContext useEffect:', token);  // Debugging line
+      //('Token from cookies inside AuthContext useEffect:', token);  // Debugging line
       if (token) {
         const res = await fetch('/api/auth/user', {
           headers: {

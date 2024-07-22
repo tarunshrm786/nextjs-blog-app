@@ -13,16 +13,16 @@ export const PostProvider = ({ children }) => {
           const data = await res.json();
           if (Array.isArray(data)) {
             setPosts(data);
-            console.log('Fetched posts:', data);
+            //console.log('Fetched posts:', data);
           } else {
             setPosts([]);
           }
         } else {
-          console.error('Failed to fetch posts:', res.status);
+          //console.error('Failed to fetch posts:', res.status);
           setPosts([]);
         }
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        //console.error('Error fetching posts:', error);
         setPosts([]);
       }
     };

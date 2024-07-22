@@ -1,94 +1,9 @@
-// import PostForm from '../../components/Blog/PostForm';
-// import { Box, Typography } from '@mui/material';
-
-// const NewPostPage = () => {
-//   return (
-//     <Box sx={{ padding: 2 }}>
-//       <Typography variant="h4" component="h1" gutterBottom>
-//         New Post
-//       </Typography>
-//       <PostForm />
-//     </Box>
-//   );
-// };
-
-// export default NewPostPage;
-
-
-// import { useEffect, useContext } from 'react';
-// import { useRouter } from 'next/router';
-// import PostForm from '../../components/Blog/PostForm';
-// import { Box, Typography } from '@mui/material';
-// import AuthContext from '../../context/AuthContext';
-
-// const NewPostPage = () => {
-//   const { user } = useContext(AuthContext);
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     if (!user) {
-//       router.push('/login');
-//     }
-//     else {
-//       router.push('/post/new');
-//     }
-//   }, [user, router]);
-
-//   if (!user) {
-//     return null; 
-//   }
-
-//   return (
-//     <Box sx={{ padding: 2 }}>
-//       <Typography variant="h4" component="h1" gutterBottom>
-//         New Post
-//       </Typography>
-//       <PostForm />
-//     </Box>
-//   );
-// };
-
-// export default NewPostPage;
-
-
-// import { useEffect, useContext } from 'react';
-// import { useRouter } from 'next/router';
-// import { Box, Typography } from '@mui/material';
-// import PostForm from '../../components/Blog/PostForm';
-// import AuthContext from '../../context/AuthContext';
-
-// const NewPostPage = () => {
-//   const { user } = useContext(AuthContext);
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     if (!user) {
-//       router.replace('/login'); // Use replace to avoid adding to history stack
-//     }
-//   }, [user, router]);
-
-
-//   if (!user) {
-//     return null;
-//   }
-
-//   return (
-//     <Box sx={{ padding: 2 }}>
-//       <Typography variant="h4" component="h1" gutterBottom>
-//         New Post
-//       </Typography>
-//       <PostForm />
-//     </Box>
-//   );
-// };
-
-// export default NewPostPage;
-
-
 import { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { Box, Typography, CircularProgress } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import PostForm from '../../components/Blog/PostForm';
 import AuthContext from '../../context/AuthContext';
 
@@ -96,11 +11,13 @@ const NewPostPage = () => {
   const { user, setUser } = useContext(AuthContext);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const checkUser = async () => {
       const token = Cookies.get('token');
-      console.log('Token from cookies inside NewPostPage useEffect:', token); // Debugging line
+      //console.log('Token from cookies inside NewPostPage useEffect:', token); // Debugging line
 
       if (token) {
         await fetchUser(token);
@@ -136,8 +53,16 @@ const NewPostPage = () => {
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          marginLeft: isSmallScreen ? '150px' : '600px',
+        }}
+      >
+        <CircularProgress sx={{ color: 'black' }} />
       </Box>
     );
   }

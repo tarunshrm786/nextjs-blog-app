@@ -3,7 +3,7 @@ import { Box, Typography, List, ListItem, ListItemText, Divider } from '@mui/mat
 import Link from 'next/link';
 
 const Sidebar = ({ recentPosts }) => {
-  console.log('Received recent posts:', recentPosts); // Debugging log
+  //console.log('Received recent posts:', recentPosts); // Debugging log
 
   // Filter posts with titles containing the word "React"
   const reactPosts = recentPosts.filter(post => post.title.toLowerCase().includes('react'));

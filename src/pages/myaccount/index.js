@@ -154,7 +154,7 @@ const MyAccount = () => {
   useEffect(() => {
     const checkUser = async () => {
       const token = Cookies.get('token');
-      console.log('Token from cookies inside MyAccount useEffect:', token); // Debugging line
+      //console.log('Token from cookies inside MyAccount useEffect:', token); // Debugging line
 
       if (token) {
         await fetchUser(token);
@@ -253,7 +253,7 @@ const MyAccount = () => {
   }
 
   if (!user) {
-    console.log('User is not authenticated:', user);
+    //console.log('User is not authenticated:', user);
     return null;
   }
 
