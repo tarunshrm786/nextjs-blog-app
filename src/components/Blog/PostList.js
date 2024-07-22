@@ -197,7 +197,7 @@ const PostList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
-  const postsPerPage = 3;
+  const postsPerPage = 4;
 
   // Auto-reload page when component mounts
   useEffect(() => {
@@ -277,6 +277,7 @@ const PostList = () => {
                 variant={currentPage === index + 1 ? 'contained' : 'outlined'}
                 sx={{
                   margin: 0.5,
+                  marginBottom: '20px',
                   color: 'white',
                   borderColor: 'black',
                   backgroundColor: 'black',
