@@ -127,7 +127,7 @@
 //           },
 //         }}
 //       >
-//         {loading ? <CircularProgress size={24} /> : 'Register'}
+//         {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Register'}
 //       </Button>
 //       <ToastContainer />
 //     </Box>
@@ -151,6 +151,8 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState({});
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTabletScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const validate = () => {
     const newErrors = {};
@@ -210,6 +212,14 @@ const RegisterForm = () => {
         ...(isSmallScreen && {
           margin: '20px auto',
           padding: '16px',
+        }),
+        ...(isTabletScreen && {
+          margin: '10px auto',
+          padding: '24px',
+          marginLeft: '1px',  // Add left margin for tablet screens
+        }),
+        ...(isLargeScreen && {
+          marginLeft: '450px', // Center form on large screens
         }),
       }}
     >
@@ -274,3 +284,4 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+
