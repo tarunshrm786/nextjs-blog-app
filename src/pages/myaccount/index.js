@@ -200,6 +200,8 @@ const MyAccount = () => {
 
       if (res.ok) {
         const data = await res.json();
+        // setPosts(data);
+        data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort posts by latest first
         setPosts(data);
       } else {
         console.error('Failed to fetch posts');

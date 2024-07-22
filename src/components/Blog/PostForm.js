@@ -145,7 +145,7 @@ const PostForm = ({ post }) => {
         body: JSON.stringify({ title, content }),
       });
       if (res.ok) {
-        router.push('/');
+        router.push('/myaccount');
       } else {
         alert('Error saving post');
       }
