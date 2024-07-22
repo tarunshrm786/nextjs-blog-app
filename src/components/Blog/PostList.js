@@ -237,7 +237,7 @@ const PostList = () => {
     if (posts.length > 0) {
       setLoading(false);
     }
-    console.log('Posts in PostList:', posts);
+    //console.log('Posts in PostList:', posts);
   }, [posts]);
 
   // Sort posts by createdAt in descending order
